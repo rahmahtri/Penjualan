@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{layout :: head}"></head>
+<body class="main-body">
+<nav th:replace="~{layout :: navigation}"></nav>
+<header th:replace="~{layout :: header (${breadCrumbs})}"></header>
+<main>
+    <form method="post" class="upsert-form" th:attr="action=@{/product/buy}" th:object="${product}">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <input type="hidden" th:field="*{productCode}"/>
+        <div class="grid-container region-detail">
+        <section class="header-info">
+            <div><span style="font-size: 30px" th:text="*{productName}"></span></div>
+            <div>
+                <span th:if="${discount} == 0" style="font-size: 10px;"  th:text="${empty}"></span>
+                <span th:if="${discount} != 0" style="text-decoration: line-through white; font-size: 10px" th:text="*{price}"></span>
+            </div>
+            <div><span style="font-size: 20px" th:text="${priceAfterDiscount}"></span></div>
+            <div>Dimension : <span th:text="*{dimension}"></span> </div>
+            <div>Unit : <span th:text="*{unit}"></span> </div>
+        </section>
+    </div>
+    <button class="blue-button" type="submit">Buy</button>
+    </form>
+</main>
+<footer th:replace="~{layout :: footer}"></footer>
+<th:block th:replace="~{layout :: javascript}"></th:block>
+</body>
+</html>
