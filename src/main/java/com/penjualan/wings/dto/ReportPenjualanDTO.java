@@ -16,4 +16,5 @@ public class ReportPenjualanDTO {
     private String user;
     private double total;
     private LocalDate date;
+    private String item;
 }

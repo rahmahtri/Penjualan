@@ -20,7 +20,7 @@ public interface TransactionDetailRepository extends JpaRepository<TransactionDe
 
     @Query("""
             Select new com.penjualan.wings.dto.ReportPenjualanDTO(Concat(th.documentCode, '-', pro.productCode), log.username,
-            th.total, th.date)
+            th.total, th.date, pro.productName)
             From TransactionDetail as td
                 Left Join td.transactionHeader as th
                 Left Join th.login as log
